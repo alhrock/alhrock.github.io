@@ -1,0 +1,41 @@
+---
+layout: default
+title: Web Developer
+---
+<header class="home_header">
+  <h1><a href="/">George Chatzipapas</a></h1>
+  <!-- About -->
+ <div id="about">
+  I'm a web developer living in Athens and working as a computer science teacher and a freelancer.
+  I build stuff for web, like <a href="https://pilotst.herokuapp.com">Pilot Series Tracker</a>.
+  Want to get in touch? Email <a href="mailto:gchatzipapas@hotmail.com">gchatzipapas@hotmail.com</a> ,tweet <a href="https://twitter.com/gchatzipapas">@gchatzipapas</a> or find me on Facebook <a href="http://facebook.com/gchatzipapas"> Georgio P. Chatzipapas </a>. 
+</div>
+</header>
+
+<hr />
+
+<div id="main" role="main">
+
+{% assign first_post = site.posts.first %}
+  <div class="post">
+    <h3>Latest Post</h3>
+    <h2><a href="{{ first_post.url }}">{{ first_post.title }}</a></h2>
+
+    <div class="entry">
+    {% if first_post.content contains "<!-- more -->" %}
+      {{ first_post.content | split:"<!-- more -->" | first % }}
+      <p class="read-more"><a href="{{ first_post.url }}">Continue Reading</a></p>
+    {% else %}
+      {{ first_post.content }}
+    {% endif %}
+    </div>
+  </div>
+
+  <hr />
+
+  <h3>Recent Posts</h3>
+  <ul class="list-unstyled more">
+  {% for post in site.posts limit:3 %}
+    <li><a href="{{ post.url }}">{{ post.title }}</a></li>
+  {% endfor %}
+  </ul>
